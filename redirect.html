@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<head>
+    <title>
+        Application X
+    </title>
+</head>
+<body>
+    <h1>Application X</h1>
+    <p><div id="redirect-url"></div> </p>
+    <button id="post-btn">Perform code exchange </button>
+    <p> ( ^ normally this step happens automatically as a server-side request)</p>
+    <br />
+    <p> Auth code: <div id="div-auth-code"></div></p>
+    <p> <b>Access token: <div id="div-access-token"></b></div></p>
+    <script>
+        const redirectText = "Redirected to " +
+        window.location.href;
+        document.getElementById("redirect-url").innerHTML = redirectText;
+
+
+        const button = document.getElementById('post-btn');
+        const divAuthCode = document.getElementById('div-auth-code');
+        const divAccessToken = document.getElementById('div-access-token');
+
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        divAuthCode.innerHTML = urlParams.get("code")
+
+        button.addEventListener('click', async _ => {
+        try {     
+            const response = await fetch("http://localhost:3000/token-exchange", {
+            method: 'POST',
+            body:  JSON.stringify({
+                "code": "test code test code"
+            }),
+            headers: {
+                "Content-Type": "application/json",
+            }
+            });
+            const data = await response.json();
+            divAccessToken.innerHTML = data.accessToken
+
+        } catch(err) {
+            console.error(`Error: ${err}`);
+        }
+});
+    </script>
+</body>
+</html>
