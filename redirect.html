@@ -15,7 +15,7 @@
     <br /> <br />
     <p> <b>Access token: <div id="div-access-token"></b></div></p>
     <br/><br/>
-    <a href="http://localhost:3001/display-resource">Back to home</a>
+    <a href="https://oauth-demo-1-ws.onrender.com/display-resource">Back to home</a>
     <script>
         const redirectText = "Redirected to " +
         window.location.href;
@@ -32,7 +32,7 @@
 
         button.addEventListener('click', async _ => {
         try {     
-            const response = await fetch("http://localhost:3000/token-exchange", {
+            const response = await fetch("https://oauth-demo-2-ws.onrender.com/token-exchange", {
             method: 'POST',
             body:  JSON.stringify({
                 "code": "test code test code"
