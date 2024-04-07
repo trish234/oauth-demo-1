@@ -28,14 +28,15 @@
 
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
-        divAuthCode.innerHTML = urlParams.get("code")
+        const authCodeStr = urlParams.get("code")
+        divAuthCode.innerHTML = authCodeStr
 
         button.addEventListener('click', async _ => {
         try {     
             const response = await fetch("https://oauth-demo-2-ws.onrender.com/token-exchange", {
             method: 'POST',
             body:  JSON.stringify({
-                "code": "test code test code"
+                "code": authCodeStr
             }),
             headers: {
                 "Content-Type": "application/json",
