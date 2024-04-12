@@ -24,7 +24,7 @@
         button.addEventListener('click', async _ => {
         try {     
             const response = await fetch("https://oauth-demo-2-ws.onrender.com/get-resource", {
-            method: 'POST',
+            method: 'GET',
             headers: {
                 "Authorization": 'Bearer I_AM_AN_ACCESS_TOKEN_12345',
                 "Content-Type": "application/json",
